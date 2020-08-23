@@ -2,7 +2,12 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const authRoutes = require("./routes/auth");
 
+//DB Connection
 mongoose
   .connect(process.env.DATABASE, {
     useNewUrlParser: true,
@@ -12,9 +17,22 @@ mongoose
   .then(() => {
     console.log("DB CONNECTED");
   })
-  .catch(consolege.log("DB GOT OOOPSS"));
+  .catch((err) => {
+    console.log("DB GOT OOOPSS" + err);
+  });
 
+// Middlewares
+app.use(bodyParser.json());
+app.use(cors());
+app.use(cookieParser());
+
+//My Routes
+app.use("/api", authRoutes);
+
+//PORT
 const port = process.env.PORT || 8000;
+
+//Starting a server
 app.listen(port, () => {
   console.log(`app is running at ${port}`);
 });
