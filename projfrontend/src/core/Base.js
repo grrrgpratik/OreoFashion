@@ -1,4 +1,5 @@
 import React from "react";
+import NavBar from "./NavBar";
 
 const Base = ({
   title = "My Title",
@@ -8,6 +9,7 @@ const Base = ({
 }) => {
   return (
     <div>
+      <NavBar />
       <div>
         <div className="container-fluid">
           <div className="jumbotron bg-dark text-white text-center">
