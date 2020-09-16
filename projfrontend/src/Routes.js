@@ -10,6 +10,9 @@ import PrivateRoute from "./auth/helper/PrivateRoutes";
 import AddCategory from "./admin/AddCategory";
 import ManageCategories from "./admin/ManageCategories";
 import AddProduct from "./admin/AddProduct";
+import ManageProducts from "./admin/ManageProducts";
+import UpdateProduct from "./admin/UpdateProduct";
+import UpdateCategory from "./admin/UpdateCategory";
 
 const Routes = () => {
   return (
@@ -31,8 +34,17 @@ const Routes = () => {
           component={ManageCategories}
         />
         <AdminRoute path="/admin/create/product" exact component={AddProduct} />
-        <AdminRoute path="/admin/products" exact component={AdminDashBoard} />
-        <AdminRoute path="/admin/orders" exact component={AdminDashBoard} />
+        <AdminRoute path="/admin/products" exact component={ManageProducts} />
+        <AdminRoute
+          path="/admin/products/update/:productId"
+          exact
+          component={UpdateProduct}
+        />
+        <AdminRoute
+          path="/admin/categories/update/:categoryId"
+          exact
+          component={UpdateCategory}
+        />
       </Switch>
     </BrowserRouter>
   );
