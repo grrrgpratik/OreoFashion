@@ -3,6 +3,7 @@ import "../styles.css";
 import Base from "./Base";
 import Card from "./Card";
 import { loadCart } from "./helper/cartHelper";
+import Payment from "./Payment";
 
 const Cart = () => {
   const [products, setProducts] = useState([]);
@@ -50,7 +51,9 @@ const Cart = () => {
             <h3> No Products in cart</h3>
           )}
         </div>
-        <div className="col-6">{loadCheckout()}</div>
+        <div className="col-6">
+          <Payment products={products} setReload={setReload} reload={reload} />
+        </div>
       </div>
     </Base>
   );
