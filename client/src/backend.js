@@ -1,1 +1,1 @@
-export const API = `http://localhost:${process.env.PORT || 8000}/api`;
+export const API = "https://oreofashion.herokuapp.com/api";
