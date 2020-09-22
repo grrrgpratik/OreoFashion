@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const path = require("path");
+
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/auth");
@@ -38,6 +40,16 @@ app.use("/api", categoryRoutes);
 app.use("/api", productRoutes);
 app.use("/api", orderRoutes);
 app.use("/api", paymentBRoutes);
+
+//Serve static assets if in production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("../projfrontend/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(
+      path.resolve(__dirname, "..", "projfrontend", "build", "index.html")
+    );
+  });
+}
 
 //PORT
 const port = process.env.PORT || 8000;

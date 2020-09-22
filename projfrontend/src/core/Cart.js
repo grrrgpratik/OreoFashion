@@ -16,8 +16,6 @@ const Cart = () => {
   const loadAllProdcuts = (products) => {
     return (
       <div>
-        <h2>This section is to load Products</h2>
-
         {products.map((product, index) => {
           return (
             <Card
