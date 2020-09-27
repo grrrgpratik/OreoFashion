@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Base from "../core/Base";
 import { Link, Redirect } from "react-router-dom";
+import imageurl from "../assets/logo@3x.png";
 
 import { signin, authenticate, isAuthenticated } from "../auth/helper";
 
@@ -78,7 +79,7 @@ const Signin = () => {
         <div className="col-md-6 offset-sm-3 text-left ">
           <form>
             <div className="form-group">
-              <label className="text-light">Email</label>
+              <label className="text-muted">Email</label>
               <input
                 className="form-control"
                 type="email"
@@ -87,7 +88,7 @@ const Signin = () => {
               />
             </div>
             <div className="form-group">
-              <label className="text-light">Password</label>
+              <label className="text-muted">Password</label>
               <input
                 className="form-control"
                 type="password"
@@ -95,7 +96,7 @@ const Signin = () => {
                 onChange={handleChange("password")}
               />
             </div>
-            <button className="btn btn-success btn-block" onClick={onSubmit}>
+            <button className="btn btn-primary btn-block" onClick={onSubmit}>
               Submit
             </button>
           </form>
@@ -104,10 +105,22 @@ const Signin = () => {
     );
   };
 
+  const logo = () => (
+    <div>
+      <img
+        src={imageurl}
+        alt="photo"
+        style={{ maxHeight: "100%", maxWidth: "100%" }}
+        className="mb-3 mx-auto d-block"
+      />
+    </div>
+  );
+
   return (
     <Base title="Sign in page" description="A page for user to sign in">
       {loadingMessage()}
       {errorMessage()}
+      {logo()}
       {signInForm()}
       {performRedirect()}
     </Base>

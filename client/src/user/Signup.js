@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Base from "../core/Base";
 import { Link } from "react-router-dom";
 import { signup } from "../auth/helper";
+import imageurl from "../assets/logo@3x.png";
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -72,7 +73,7 @@ const Signup = () => {
         <div className="col-md-6 offset-sm-3 text-left ">
           <form>
             <div className="form-group">
-              <label className="text-light">Name</label>
+              <label className="text-muted">Name</label>
               <input
                 className="form-control"
                 type="text"
@@ -81,7 +82,7 @@ const Signup = () => {
               />
             </div>
             <div className="form-group">
-              <label className="text-light">Email</label>
+              <label className="text-muted">Email</label>
               <input
                 className="form-control"
                 type="email"
@@ -90,7 +91,7 @@ const Signup = () => {
               />
             </div>
             <div className="form-group">
-              <label className="text-light">Password</label>
+              <label className="text-muted">Password</label>
               <input
                 className="form-control"
                 type="password"
@@ -98,7 +99,7 @@ const Signup = () => {
                 onChange={handleChange("password")}
               />
             </div>
-            <button className="btn btn-success btn-block" onClick={onSubmit}>
+            <button className="btn btn-primary btn-block" onClick={onSubmit}>
               Submit
             </button>
           </form>
@@ -107,10 +108,22 @@ const Signup = () => {
     );
   };
 
+  const logo = () => (
+    <div>
+      <img
+        src={imageurl}
+        alt="photo"
+        style={{ maxHeight: "100%", maxWidth: "100%" }}
+        className="mb-3 mx-auto d-block"
+      />
+    </div>
+  );
+
   return (
     <Base title="Sign up page" description="A page for user to sign up">
       {successMessage()}
       {errorMessage()}
+      {logo()}
       {signUpForm()}
     </Base>
   );

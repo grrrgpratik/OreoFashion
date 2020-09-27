@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { addItemToCart, removeItemFromCart } from "./helper/cartHelper";
 import ImageHelper from "./helper/ImageHelper";
 
 const Card = ({
   product,
+  showViewProductButton = true,
   addtoCart = true,
   removeFromCart = false,
   setReload = (f) => f,
@@ -35,7 +36,7 @@ const Card = ({
           onClick={() => {
             addToCart();
           }}
-          className="btn btn-block btn-outline-success mt-2 mb-2"
+          className="btn btn-outline-success mt-2 mb-2  card-btn-1"
         >
           Add to Cart
         </button>
@@ -50,28 +51,48 @@ const Card = ({
             removeItemFromCart(product._id);
             setReload(!reload);
           }}
-          className="btn btn-block btn-outline-danger mt-2 mb-2"
+          className="btn btn-outline-danger mt-2 mb-2"
         >
           Remove from cart
         </button>
       )
     );
   };
+  const showStock = (quantity) => {
+    return quantity > 0 ? (
+      <span className="badge badge-primary badge-pill">In Stock </span>
+    ) : (
+      <span className="badge badge-primary badge-pill">Out of Stock </span>
+    );
+  };
 
+  const showViewButton = (showViewProductButton) => {
+    return (
+      showViewProductButton && (
+        <Link to={`/product/${product._id}`} className="mr-2">
+          <button className="btn btn-outline-primary mt-2 mb-2 card-btn-1">
+            View Product
+          </button>
+        </Link>
+      )
+    );
+  };
   return (
-    <div className="card text-white bg-dark border border-info ">
-      <div className="card-header lead">{cardTitle}</div>
+    <div className="card">
+      {/* <div className="card-header card-header-1 text-dark">{cardTitle}</div> */}
       <div className="card-body">
         {getRedirect(redirect)}
         <ImageHelper product={product} />
-        <p className="lead bg-success font-weight-normal text-wrap">
-          {cardDescription}
-        </p>
-        <p className="btn btn-success rounded  btn-sm px-4">$ {cardPrice}</p>
-        <div className="row">
-          <div className="col-12">{showAddToCart(addtoCart)}</div>
-          <div className="col-12">{showRemoveToCart(removeFromCart)}</div>
-        </div>
+        <p className="card-p  mt-2 text-muted">{cardTitle}</p>
+        <p className="black-10 bg-white font-weight-bold">$ {cardPrice}</p>
+
+        {showStock(product.stock)}
+        <br />
+        {showViewButton(showViewProductButton)}
+
+        {showAddToCart(addtoCart)}
+
+        {showRemoveToCart(removeFromCart)}
       </div>
     </div>
   );

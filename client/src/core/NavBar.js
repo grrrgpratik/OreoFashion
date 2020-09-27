@@ -4,15 +4,15 @@ import { signout, isAuthenticated } from "../auth/helper";
 
 const currentTab = (history, path) => {
   if (history.location.pathname === path) {
-    return { color: "#2ecc72" };
+    return { color: "#ff9900" };
   } else {
-    return { color: "#d1d1d1" };
+    return { color: "#ffffff" };
   }
 };
 
 const NavBar = ({ history }) => (
   <div>
-    <ul className="nav nav-tabs bg-dart">
+    <ul className="nav nav-tabs bg-primary">
       <li className="nav-item">
         <Link style={currentTab(history, "/")} className="nav-link" to="/">
           Home
