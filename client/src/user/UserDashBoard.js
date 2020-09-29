@@ -1,15 +1,33 @@
 import React from "react";
 import Base from "../core/Base";
+import { Link } from "react-router-dom";
 import { isAuthenticated } from "../auth/helper/index";
 
 const UserDashBoard = () => {
   const {
-    user: { name, email },
+    user: { name, email, _id },
   } = isAuthenticated();
 
-  // const adminLeftSide = () => {
-  //   return <div className="card"></div>;
-  // };
+  const userLinks = () => {
+    return (
+      <div className="card">
+        <h4 className="card-header">User Links</h4>
+        <ul className="list-group">
+          <li className="list-group-item">
+            <Link className="nav-link" to="/cart">
+              My Cart
+            </Link>
+          </li>
+          <li className="list-group-item">
+            <Link className="nav-link" to={`/profile/${_id}`}>
+              Update Profile
+            </Link>
+          </li>
+        </ul>
+      </div>
+    );
+  };
+
   const adminRightSide = () => {
     return (
       <div className="card mb-4">
@@ -24,7 +42,7 @@ const UserDashBoard = () => {
             {email}
           </li>
           <li className="list-group-item">
-            <span className="badge badge-warning">User Area</span>
+            <span className="badge badge-warning">Registered User</span>
           </li>
         </ul>
       </div>
@@ -32,12 +50,13 @@ const UserDashBoard = () => {
   };
   return (
     <Base
-      title="Welcom to user area"
-      description="Manage all of your details here"
-      className="container bg-success p-4"
+      title="Welcome to Dashboard"
+      description={`G'day ${name}!`}
+      className="container-fluid"
     >
       <div className="row">
-        <div className="col-12">{adminRightSide()}</div>
+        <div className="col-3">{userLinks()}</div>
+        <div className="col-9">{adminRightSide()}</div>
       </div>
     </Base>
   );

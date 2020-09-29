@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
-import { addItemToCart, removeItemFromCart } from "./helper/cartHelper";
+import {
+  addItemToCart,
+  removeItemFromCart,
+  updateItemFromCart,
+} from "./helper/cartHelper";
 import ImageHelper from "./helper/ImageHelper";
 
 const Card = ({
@@ -8,13 +12,14 @@ const Card = ({
   showViewProductButton = true,
   addtoCart = true,
   removeFromCart = false,
+  cartUpdate = false,
   setReload = (f) => f,
   //function (f){return f}
   reload = undefined,
 }) => {
   const [redirect, setRedirect] = useState(false);
 
-  // const [count, setCount] = useState(product.count);
+  const [count, setCount] = useState(product.count);
 
   const cardTitle = product ? product.name : "A photo from pexels";
   // const cardDescription = product ? product.description : "Description";
@@ -77,6 +82,35 @@ const Card = ({
       )
     );
   };
+
+  const changeQuantity = (productId) => (event) => {
+    setReload(!reload); // run useEffect in parent Cart
+    setCount(event.target.value < 1 ? 1 : event.target.value);
+    if (event.target.value >= 1) {
+      updateItemFromCart(productId, event.target.value);
+    }
+  };
+
+  const showCartUpdateOptions = (cartUpdate) => {
+    return (
+      cartUpdate && (
+        <div>
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text">Adjust Quantity</span>
+            </div>
+            <input
+              type="number"
+              className="form-control"
+              value={count}
+              onChange={changeQuantity(product._id)}
+            />
+          </div>
+        </div>
+      )
+    );
+  };
+
   return (
     <div className="card">
       {/* <div className="card-header card-header-1 text-dark">{cardTitle}</div> */}
@@ -93,6 +127,8 @@ const Card = ({
         {showAddToCart(addtoCart)}
 
         {showRemoveToCart(removeFromCart)}
+
+        {showCartUpdateOptions(cartUpdate)}
       </div>
     </div>
   );

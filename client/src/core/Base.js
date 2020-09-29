@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 const Base = ({
   title = "My Title",
   description = "My Description",
-  className = "bg text-white p-4",
+  className = "bg p-4",
   children,
 }) => {
   return (

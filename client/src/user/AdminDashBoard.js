@@ -11,30 +11,30 @@ const AdminDashBoard = () => {
   const adminLeftSide = () => {
     return (
       <div className="card">
-        <h4 className="card-header bg-success text-white">Admin Navigation</h4>
+        <h4 className="card-header">Admin Navigation</h4>
         <ul className="list-group">
           <li className="list-group-item">
-            <Link to="/admin/create/category" className="nav-link text-success">
+            <Link to="/admin/create/category" className="nav-link">
               Create Categories
             </Link>
           </li>
           <li className="list-group-item">
-            <Link to="/admin/categories" className="nav-link text-success">
+            <Link to="/admin/categories" className="nav-link">
               Manage Categories
             </Link>
           </li>
           <li className="list-group-item">
-            <Link to="/admin/create/product" className="nav-link text-success">
+            <Link to="/admin/create/product" className="nav-link">
               Create Product
             </Link>
           </li>
           <li className="list-group-item">
-            <Link to="/admin/products" className="nav-link text-success">
+            <Link to="/admin/products" className="nav-link">
               Manage Products
             </Link>
           </li>
           <li className="list-group-item">
-            <Link to="/admin/orders" className="nav-link text-success">
+            <Link to="/admin/orders" className="nav-link">
               Manage Orders
             </Link>
           </li>
@@ -67,7 +67,7 @@ const AdminDashBoard = () => {
     <Base
       title="Welcom to admin area"
       description="Manage all of your product here"
-      className="container bg-success p-4"
+      className="container-fluid"
     >
       <div className="row">
         <div className="col-3">{adminLeftSide()}</div>

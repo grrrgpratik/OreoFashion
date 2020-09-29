@@ -21,6 +21,24 @@ export const loadCart = () => {
   }
 };
 
+export const updateItemFromCart = (productId, count) => {
+  let cart = [];
+  if (typeof window !== "undefined") {
+    if (localStorage.getItem("cart")) {
+      cart = JSON.parse(localStorage.getItem("cart"));
+    }
+
+    cart.map((product, i) => {
+      if (product._id === productId) {
+        cart[i].count = count;
+      }
+      return null;
+    });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+};
+
 export const removeItemFromCart = (productId) => {
   let cart = [];
 
