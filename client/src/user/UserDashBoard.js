@@ -1,16 +1,15 @@
 import React from "react";
 import Base from "../core/Base";
 import { isAuthenticated } from "../auth/helper/index";
-import { Link } from "react-router-dom";
 
 const UserDashBoard = () => {
   const {
-    user: { name, email, role },
+    user: { name, email },
   } = isAuthenticated();
 
-  const adminLeftSide = () => {
-    return <div className="card"></div>;
-  };
+  // const adminLeftSide = () => {
+  //   return <div className="card"></div>;
+  // };
   const adminRightSide = () => {
     return (
       <div className="card mb-4">

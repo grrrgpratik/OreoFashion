@@ -52,16 +52,11 @@ export const signout = (next) => {
 
 export const isAuthenticated = () => {
   if (typeof window == "undefined") {
-    console.log("insdie windoe");
     return false;
   }
   if (localStorage.getItem("jwt")) {
-    console.log("insdie jwt");
-
     return JSON.parse(localStorage.getItem("jwt"));
   } else {
-    console.log("insdie else");
-
     return false;
   }
 };

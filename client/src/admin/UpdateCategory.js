@@ -24,7 +24,7 @@ const UpdateCategory = ({ match }) => {
 
   useEffect(() => {
     preload(match.params.categoryId);
-  }, []);
+  }, [match.params.categoryId]);
 
   const onSubmit = (event) => {
     event.preventDefault();

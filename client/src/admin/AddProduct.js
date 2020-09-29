@@ -27,13 +27,9 @@ const AddProduct = () => {
     description,
     price,
     stock,
-    photo,
     categories,
-    category,
-    loading,
     error,
     createdProduct,
-    getRedirect,
     formData,
   } = values;
 
@@ -54,7 +50,7 @@ const AddProduct = () => {
 
   useEffect(() => {
     preload();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const onSubmit = (event) => {
     event.preventDefault();

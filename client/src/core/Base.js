@@ -29,13 +29,13 @@ const Base = ({
           </div>
         </footer> */}
 
-        <footer class="page-footer text-center text-md-left pt-4">
+        <footer className="page-footer text-center text-md-left pt-4">
           <hr />
 
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-3">
-                <h5 class="text-uppercase font-weight-bold mb-4">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-md-3">
+                <h5 className="text-uppercase font-weight-bold mb-4">
                   Footer Content
                 </h5>
                 <p>
@@ -44,11 +44,11 @@ const Base = ({
                 </p>
               </div>
 
-              <hr class="w-100 clearfix d-md-none" />
+              <hr className="w-100 clearfix d-md-none" />
 
-              <div class="col-md-2 mx-auto">
-                <h5 class="text-uppercase font-weight-bold mb-4">Links</h5>
-                <ul class="list-unstyled">
+              <div className="col-md-2 mx-auto">
+                <h5 className="text-uppercase font-weight-bold mb-4">Links</h5>
+                <ul className="list-unstyled">
                   <li>
                     <a href="#!">Link 1</a>
                   </li>
@@ -64,11 +64,11 @@ const Base = ({
                 </ul>
               </div>
 
-              <hr class="w-100 clearfix d-md-none" />
+              <hr className="w-100 clearfix d-md-none" />
 
-              <div class="col-md-2 mx-auto">
-                <h5 class="text-uppercase font-weight-bold mb-4">Links</h5>
-                <ul class="list-unstyled">
+              <div className="col-md-2 mx-auto">
+                <h5 className="text-uppercase font-weight-bold mb-4">Links</h5>
+                <ul className="list-unstyled">
                   <li>
                     <a href="#!">Link 1</a>
                   </li>
@@ -84,11 +84,11 @@ const Base = ({
                 </ul>
               </div>
 
-              <hr class="w-100 clearfix d-md-none" />
+              <hr className="w-100 clearfix d-md-none" />
 
-              <div class="col-md-2 mx-auto">
-                <h5 class="text-uppercase font-weight-bold mb-4">Links</h5>
-                <ul class="list-unstyled">
+              <div className="col-md-2 mx-auto">
+                <h5 className="text-uppercase font-weight-bold mb-4">Links</h5>
+                <ul className="list-unstyled">
                   <li>
                     <a href="#!">Link 1</a>
                   </li>

@@ -112,7 +112,7 @@ const Signup = () => {
     <div>
       <img
         src={imageurl}
-        alt="photo"
+        alt="logo"
         style={{ maxHeight: "100%", maxWidth: "100%" }}
         className="mb-3 mx-auto d-block"
       />

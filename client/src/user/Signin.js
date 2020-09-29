@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Base from "../core/Base";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import imageurl from "../assets/logo@3x.png";
 
 import { signin, authenticate, isAuthenticated } from "../auth/helper";
@@ -14,7 +14,7 @@ const Signin = () => {
     didRedirect: false,
   });
 
-  const { name, email, password, error, loading, didRedirect } = values;
+  const { email, password, error, loading, didRedirect } = values;
   const { user } = isAuthenticated();
 
   const handleChange = (name) => (event) => {
@@ -109,7 +109,7 @@ const Signin = () => {
     <div>
       <img
         src={imageurl}
-        alt="photo"
+        alt="logo"
         style={{ maxHeight: "100%", maxWidth: "100%" }}
         className="mb-3 mx-auto d-block"
       />

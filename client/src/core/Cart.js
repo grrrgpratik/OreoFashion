@@ -32,15 +32,19 @@ const Cart = () => {
     );
   };
 
-  const loadCheckout = () => {
-    return (
-      <div>
-        <h2>This section is to load checkout</h2>
-      </div>
-    );
-  };
+  // const loadCheckout = () => {
+  //   return (
+  //     <div>
+  //       <h2>This section is to load checkout</h2>
+  //     </div>
+  //   );
+  // };
   return (
-    <Base title="Cart Page" description="Ready to checkout">
+    <Base
+      title="Cart Page"
+      description="Ready to checkout"
+      className="container-fluid"
+    >
       <div className="row">
         <div className="col-6">
           {products.length > 0 ? (

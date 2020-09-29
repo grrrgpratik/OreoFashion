@@ -4,7 +4,6 @@ import { isAuthenticated } from "../auth/helper";
 import Base from "../core/Base";
 import {
   getAllCategories,
-  createProduct,
   getProduct,
   updateProduct,
 } from "./helper/adminapicall";
@@ -32,13 +31,9 @@ const UpdateProduct = ({ match }) => {
     description,
     price,
     stock,
-    photo,
     categories,
-    category,
-    loading,
     error,
     createdProduct,
-    getRedirect,
     formData,
   } = values;
 
@@ -77,7 +72,7 @@ const UpdateProduct = ({ match }) => {
 
   useEffect(() => {
     preload(match.params.productId);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -147,10 +142,10 @@ const UpdateProduct = ({ match }) => {
       <div className="form-group">
         <input
           onChange={handleChange("name")}
-          name="photo"
+          name="name"
           className="form-control"
           placeholder="Name"
-          value={name}
+          value={name || ""}
         />
       </div>
       <div className="form-group">
@@ -168,7 +163,7 @@ const UpdateProduct = ({ match }) => {
           type="number"
           className="form-control"
           placeholder="Price"
-          value={price}
+          value={price || ""}
         />
       </div>
       <div className="form-group">
@@ -194,7 +189,7 @@ const UpdateProduct = ({ match }) => {
           type="number"
           className="form-control"
           placeholder="Quantity"
-          value={stock}
+          value={stock || ""}
         />
       </div>
 
