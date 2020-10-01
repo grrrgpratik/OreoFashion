@@ -112,13 +112,13 @@ const Card = ({
   };
 
   return (
-    <div className="card">
+    <div className="card my-3">
       {/* <div className="card-header card-header-1 text-dark">{cardTitle}</div> */}
       <div className="card-body">
         {getRedirect(redirect)}
         <ImageHelper product={product} />
         <p className="card-p  mt-2 text-muted">{cardTitle}</p>
-        <p className="black-10 bg-white font-weight-bold">$ {cardPrice}</p>
+        <h3 className="black-10 bg-white font-weight-bold">$ {cardPrice}</h3>
 
         {showStock(product.stock)}
         <br />

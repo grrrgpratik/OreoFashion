@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "../styles.css";
 import Base from "./Base";
-import Card from "./Card";
+import { Link } from "react-router-dom";
 import { loadCart } from "./helper/cartHelper";
 import Payment from "./Payment";
+import {
+  Row,
+  Col,
+  ListGroup,
+  Image,
+  Form,
+  Button,
+  Card,
+} from "react-bootstrap";
+import { API } from "../backend";
 
 const Cart = () => {
   const [products, setProducts] = useState([]);
@@ -166,7 +176,7 @@ const Cart = () => {
         </div>
       </div> */}
 
-      <div className="col-6">
+      {/* <div className="col-6">
         {products.length > 0 ? (
           loadAllProdcuts(products)
         ) : (
@@ -175,7 +185,84 @@ const Cart = () => {
       </div>
       <div className="col-6">
         <Payment products={products} setReload={setReload} reload={reload} />
-      </div>
+      </div> */}
+      <Row>
+        <Col md={8}>
+          <h1>Shopping Cart</h1>
+          {products.length === 0 ? (
+            <h3> No Products in cart</h3>
+          ) : (
+            <ListGroup variant="flush">
+              {products.map((item) => (
+                <ListGroup.Item key={item.product}>
+                  <Row>
+                    <Col md={2}>
+                      <Image
+                        src={`${API}/product/photo/${item._id}`}
+                        alt={item.name}
+                        fluid
+                        rounded
+                      />
+                    </Col>
+                    <Col md={3}>
+                      <Link to={`/product/${item.product}`}>{item.name}</Link>
+                    </Col>
+                    <Col md={2}>${item.price}</Col>
+                    <Col md={2}>
+                      <Form.Control
+                        as="select"
+                        value={item.qty}
+                        onChange={() => {}}
+                      >
+                        {[...Array(item.stock).keys()].map((x) => (
+                          <option key={x + 1} value={x + 1}>
+                            {x + 1}
+                          </option>
+                        ))}
+                      </Form.Control>
+                    </Col>
+                    <Col md={2}>
+                      <Button type="button" variant="light" onClick={() => {}}>
+                        <i className="fas fa-trash"></i>
+                      </Button>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+          )}
+        </Col>
+        <Col md={4}>
+          <Card>
+            <ListGroup variant="flush">
+              <ListGroup.Item>
+                <h2>
+                  Subtotal (
+                  {products.reduce(
+                    (acc, item) => acc + parseInt(item.count),
+                    0
+                  )}
+                  ) items
+                </h2>
+                $
+                {products
+                  .reduce((acc, item) => acc + item.count * item.price, 0)
+                  .toFixed(2)}
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Button
+                  type="button"
+                  className="btn-block"
+                  disabled={products.length === 0}
+                  onClick={() => {}}
+                >
+                  Proceed To Checkout
+                </Button>
+              </ListGroup.Item>
+            </ListGroup>
+          </Card>
+        </Col>
+      </Row>
     </Base>
   );
 };
