@@ -1,11 +1,12 @@
 import DropIn from "braintree-web-drop-in-react";
 import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import { isAuthenticated } from "../auth/helper";
-import { cartEmpty } from "./helper/cartHelper";
+import Base from "./Base";
+import { cartEmpty, loadCart, loadCartNo } from "./helper/cartHelper";
 import { createOrder } from "./helper/orderHelper";
 import { getmeToken, processPayment } from "./helper/paymentbhelper";
-
-const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
+const Payment = () => {
   const [info, setInfo] = useState({
     loading: false,
     success: false,
@@ -13,6 +14,13 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
     error: "",
     instance: {},
   });
+  const [products, setProducts] = useState([]);
+  const [reload, setReload] = useState(false);
+
+  useEffect(() => {
+    setProducts(loadCart());
+    getRedirect(products.length === 0);
+  }, [reload]);
 
   const userId = isAuthenticated() && isAuthenticated().user._id;
   const token = isAuthenticated() && isAuthenticated().token;
@@ -61,6 +69,7 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
             //Empty cart
             cartEmpty(() => {
               console.log("did we got the crash? ");
+              getRedirect(true);
             });
             //force reload
             setReload(!reload);
@@ -101,17 +110,30 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
             </button>
           </div>
         ) : (
-          <h3>Please login or add something to cart</h3>
+          <h3>Loading...</h3>
         )}
       </div>
     );
   };
 
+  const getRedirect = (redirect) => {
+    if (redirect) {
+      return <Redirect to="/" />;
+    }
+  };
+
   return (
-    <div>
-      <h3> You bill is {getAmount()}</h3>
-      {showbtDropIn()}
-    </div>
+    <Base
+      title="Cart Page"
+      description="Ready to checkout"
+      className="container"
+    >
+      {loadCartNo() === 0 && <Redirect to="/" />}
+      <div>
+        <h3> You bill is {getAmount()}</h3>
+        {showbtDropIn()}
+      </div>
+    </Base>
   );
 };
 

@@ -14,6 +14,7 @@ import ManageProducts from "./admin/ManageProducts";
 import UpdateProduct from "./admin/UpdateProduct";
 import UpdateCategory from "./admin/UpdateCategory";
 import Cart from "./core/Cart";
+import Payment from "./core/Payment";
 
 const Routes = () => {
   return (
@@ -24,6 +25,7 @@ const Routes = () => {
         <Route path="/signin" exact component={Signin} />
         <Route path="/cart" exact component={Cart} />
         <PrivateRoute path="/user/dashboard" exact component={UserDashBoard} />
+        <PrivateRoute path="/checkout" exact component={Payment} />
         <AdminRoute path="/admin/dashboard" exact component={AdminDashBoard} />
         <AdminRoute
           path="/admin/create/category"

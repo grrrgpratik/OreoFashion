@@ -21,6 +21,14 @@ export const loadCart = () => {
   }
 };
 
+export const loadCartNo = () => {
+  if (typeof window !== undefined) {
+    if (localStorage.getItem("cart")) {
+      return JSON.parse(localStorage.getItem("cart")).length;
+    }
+  }
+};
+
 export const updateItemFromCart = (productId, count) => {
   let cart = [];
   if (typeof window !== "undefined") {
